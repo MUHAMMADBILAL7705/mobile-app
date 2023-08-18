@@ -18,6 +18,7 @@ import { DomainCheckService } from '../../../providers/service/domain-check-serv
 export class DomainCheck implements OnInit {
 
   formGroup!: FormGroup;
+  formSubmitted : boolean = false;
 
   constructor(public navParams: NavParams, public formBuilder: FormBuilder,
     public alertController: AlertController, private domainCheckService: DomainCheckService,
@@ -34,6 +35,7 @@ export class DomainCheck implements OnInit {
   }
 
   public checkDomain() {
+    this.formSubmitted = true;
     this.domainCheckService.checkDomain(this.getDomainName())
       .then((res: { isValidDomain: () => any; ssoEnabled: any; }) => {
         if (res.isValidDomain()) {
