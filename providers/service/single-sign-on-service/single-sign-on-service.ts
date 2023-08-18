@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { CommunicationService } from "../communication-service/communication-service";
-import { ENV } from '@app/env';
+import { ENV } from 'environments/environment.prod';
 
 
 @Injectable()
@@ -25,7 +25,7 @@ export class SingleSignOnService {
         this.getLogoutUrl(domainName)
             .then(res => {
                 const browser = this.iab.create(res.sSOUrl, "_blank", { location: 'no', hideurlbar: "yes" });
-                browser.on('loadstop').subscribe((e) => {
+                browser.on('loadstop').subscribe((e:any) => {
                     if (this.isValidLogoutUrl(e.url))
                         browser.close();
                 });
@@ -41,7 +41,7 @@ export class SingleSignOnService {
                     res => {
                         if (res) {
                             const browser = this.iab.create(res.sSOUrl, "_blank", { location: 'no', hideurlbar: "yes" });
-                            browser.on('loadstart').subscribe((e) => {
+                            browser.on('loadstart').subscribe((e:any) => {
                                 if (this.isValidUrl(e.url)) {
                                     resolve(this.isValidUrl(e.url) ? e.url : "");
                                     browser.close();
@@ -63,15 +63,15 @@ export class SingleSignOnService {
         return url.includes("common/oauth2/v2.0/logoutsession");
     }
 
-    private getInitialUrl(domain): Promise<any> {
+    private getInitialUrl(domain:any): Promise<any> {
         return this.communicationService.get(ENV.sSOInitialUrl(domain));
     }
 
-    private getLogoutUrl(domain): Promise<any> {
+    private getLogoutUrl(domain:any): Promise<any> {
         return this.communicationService.get(ENV.sSOLogoutUrl(domain));
     }
 
-    private finishUrl(sSOFinishModel, domain: string): Promise<any> {
+    private finishUrl(sSOFinishModel:any, domain: string): Promise<any> {
         return this.communicationService.post(ENV.sSOFinishUrl(domain), sSOFinishModel);
     }
 

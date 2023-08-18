@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ENV } from "@app/env";
+import { ENV } from "environments/environment.prod";
 import { LeaveBalanceRequestModel } from "../../../models/leave/LeaveBalanceRequestModel";
 import * as moment from 'moment-timezone';
 import { CommunicationService } from "../communication-service/communication-service";

@@ -18,19 +18,19 @@ export class StorageService {
     console.log('Hello StorageServiceProvider Provider');
   }
 
-  public addToStorage(key, value): void {
+  public addToStorage(key:any, value:any): void {
     this.setStorage(key, value);
   }
 
-  private setStorage(key, value) {
+  private setStorage(key:any, value:any) {
     return this.storage.set(`setting:${ key }`, value);
   }
 
-  public async getFromStorage(key) {
+  public async getFromStorage(key:any) {
     return await this.storage.get(`setting:${ key }`)
   }
 
-  public async deleteFromStorage(key) {
+  public async deleteFromStorage(key:any) {
     return await this.storage.remove(`setting:${key}`)
 
   }

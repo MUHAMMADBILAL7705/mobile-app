@@ -2,7 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -22,7 +21,13 @@
       "es2018", 
       "dom"
     ],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "baseUrl": "./src",
+    "paths": {
+    "@app/env": [
+      "environments/environment"
+    ]
+}
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

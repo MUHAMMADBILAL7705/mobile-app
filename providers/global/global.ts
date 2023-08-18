@@ -9,12 +9,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class GlobalProvider {
 
-  public token: string;
-  public date: string;
-  public company: string;
-  public lastHourEntryDate: string;
+  public token!: string;
+  public date!: string;
+  public company!: string;
+  public lastHourEntryDate!: string;
   public selectedTabIndex: number = 0;
-  public currentDay: String;
+  public currentDay!: String;
   constructor() {
   }
 

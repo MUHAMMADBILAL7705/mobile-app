@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CommunicationService } from "../communication-service/communication-service";
-import { ENV } from '@app/env';
+import { ENV } from 'environments/environment.prod';
 import { Observable } from 'rxjs/Observable';
 
 

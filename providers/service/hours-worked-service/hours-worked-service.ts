@@ -2,7 +2,7 @@ import { CsrxtokenService } from './../csrxtoken-service/csrxtoken-service';
 import { Injectable } from '@angular/core';
 import { CommunicationService } from '../communication-service/communication-service';
 import { GlobalProvider } from '../../global/global';
-import { ENV } from '@app/env';
+import { ENV } from 'environments/environment.prod';
 
 @Injectable()
 export class HoursWorkedService {

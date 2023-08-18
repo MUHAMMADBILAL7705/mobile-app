@@ -12,7 +12,7 @@ import * as moment from 'moment';
 import { GlobalProvider } from '../../global/global';
 import { ToasterUtlis } from '../../util/toaster-utlis/toaster-utlis';
 import { SpinnerServiceProvider } from '../spinner-service/spinner-service';
-import { ENV } from '@app/env';
+import { ENV } from 'environments/environment.prod';
 import { PayTypeModel } from '../../../models/payType/PayTypeModel';
 
 @Injectable()

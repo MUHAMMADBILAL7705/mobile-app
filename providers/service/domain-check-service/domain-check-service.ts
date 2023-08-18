@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CommunicationService } from "../communication-service/communication-service";
-import { ENV } from '@app/env';
-import { DomainResponse } from '../../../models/sso/DomainResponse';
+import { ENV } from 'environments/environment.prod';
+import { DomainResponse } from '../../../src/models/sso/DomainResponse';
 
 
 @Injectable()

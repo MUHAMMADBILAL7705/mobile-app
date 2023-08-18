@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { GlobalProvider } from "../../global/global";
-import 'rxjs/add/operator/map';
+import 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { StorageService } from '../storage-service/storage-service';
 import {ENV} from "@app/env";
 import * as moment from 'moment-timezone';
@@ -89,7 +89,7 @@ export class CommunicationService {
     return { headers: headersToSend, params: data };
   }
 
-  private createHeaders(token): any {
+  private createHeaders(token:any): any {
     let headersToSend = new HttpHeaders();
     headersToSend = headersToSend.append('Content-Type', 'application/json')
       .append('Access-Control-Allow-Origin', '*').append('X-XSRF-TOKEN', token ? token : '').append('timezone', this.getTimeZone());
