@@ -1,0 +1,54 @@
+page-domain-check {
+
+    ion-col {
+      position: relative;
+    }
+  
+    ion-row ion-col img {
+      max-width: 100px;
+      max-height: 100px;
+      display: block;
+      margin: 0px auto 0px;
+    }
+  
+    .item-inner {
+      border-bottom-color: theme-colors('mainColors', 'primary') !important;
+      box-shadow: none !important;
+    }
+  
+    [login-button] {
+      margin-top: 10%;
+      width: 100%;
+      display: block;
+      background-color: #029bc9;
+      color: #000;
+    }
+  
+    .error{
+      color: $text-input-ios-highlight-color-invalid;
+    }
+    .min-font{
+      font-size: $text-font-size;
+    }
+  
+    .no-padding-right{
+      padding-right: 0;
+    }
+    .no-padding-left{
+      padding-left: 0;
+    }
+    .white{
+      color: white !important;
+  
+    }
+    .login-page .text-input[disabled] {
+      opacity: .8 !important;
+  }
+  .underline {
+     text-decoration: underline; }
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }

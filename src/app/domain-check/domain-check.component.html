@@ -1,0 +1,38 @@
+<!-- Themes Login + logo -->
+
+<ion-content white-background>
+  <ion-grid>
+      <form [formGroup]="formGroup" (ngSubmit)="checkDomain()">
+          <!---Logo-->
+          <ion-row wrap padding>
+              <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+                  <img [src]="'assets/images/logo/hourTimesheetLogo-vertical.png'">
+              </ion-col>
+          </ion-row>
+          <!---Logo-->
+
+          <!---Input field companyName-->
+          <ion-row>
+              <ion-col col-6 class="no-padding-right">
+                  <ion-item no-padding transparent>
+                      <ion-label class="min-font" floating> <ion-icon name="home"></ion-icon>Domain Name</ion-label>
+                      <ion-input class="min-font" autocapitalize="none" [ngClass]="{'error': formGroup.controls['domain'].hasError('required') && formSubmitted}" required
+                          type="text" formControlName="domain"></ion-input>
+                  </ion-item>
+              </ion-col>
+              <ion-col col-6 class="no-padding-left">
+                  <ion-item no-padding transparent >
+                      <ion-label floating style="color: white !important" class="min-font"> <ion-icon name="key"></ion-icon>abc</ion-label>
+                      <ion-input  class="min-font login-page" [disabled]="true" name="subDomain" formControlName="subDomain" type="text"></ion-input>
+                  </ion-item>
+              </ion-col>
+              <p class="error min-font "  *ngIf="formGroup.controls[ 'domain'].hasError( 'required') && formSubmitted ">This field is required</p>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                  <button type="submit" ion-button login-button>Next </button>
+              </ion-col>
+          </ion-row>
+      </form>
+  </ion-grid>
+</ion-content>
