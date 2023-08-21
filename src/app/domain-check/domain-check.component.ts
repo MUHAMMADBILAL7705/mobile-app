@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavParams, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 import { GlobalProvider } from '../../../providers/global/global';
 import { CompanyService } from '../../../providers/service/company-service/company-service';
 import { StorageService } from '../../../providers/service/storage-service/storage-service';
-import { TimehseetConfigurationService } from '../../../providers/service/timehseet-configuration-service/timehseet-configuration-service';
-import { SingleSignOnService } from '../../../providers/service/single-sign-on-service/single-sign-on-service';
+// import { TimehseetConfigurationService } from '../../../providers/service/timehseet-configuration-service/timehseet-configuration-service';
+// import { SingleSignOnService } from '../../../providers/service/single-sign-on-service/single-sign-on-service';
 import { DomainCheckService } from '../../../providers/service/domain-check-service/domain-check-service';
 
 @Component({
@@ -22,10 +22,10 @@ export class DomainCheck implements OnInit {
 
   constructor(public navParams: NavParams, public formBuilder: FormBuilder,
     public alertController: AlertController, private domainCheckService: DomainCheckService,
-    private singleSignOnService: SingleSignOnService,
+    // private singleSignOnService: SingleSignOnService,
     private storageService: StorageService,
     public globalProvider: GlobalProvider, private companyService: CompanyService,
-    private timesheetConfigurationService: TimehseetConfigurationService,
+    // private timesheetConfigurationService: TimehseetConfigurationService,
     private router: Router) {
   }
 
@@ -39,15 +39,15 @@ export class DomainCheck implements OnInit {
     this.domainCheckService.checkDomain(this.getDomainName())
       .then((res: { isValidDomain: () => any; ssoEnabled: any; }) => {
         if (res.isValidDomain()) {
-          this.addDomainToStorage();
+          // this.addDomainToStorage();
           if (res.ssoEnabled) {
-            this.singleSignOnService.loginViaSSO(this.getDomainName())
-              .then((response: any) => {
-                let responseModel: any = response;
-                responseModel.ssoEnabled = res.ssoEnabled;
-                if (responseModel.authenticated) this.addUserDetailToStorage(responseModel);
-                else this.router.navigate([]);
-              });
+            // this.singleSignOnService.loginViaSSO(this.getDomainName())
+            //   .then((response: any) => {
+            //     let responseModel: any = response;
+            //     responseModel.ssoEnabled = res.ssoEnabled;
+            //     if (responseModel.authenticated) this.addUserDetailToStorage(responseModel);
+            //     else this.router.navigate([]);
+            //   });
           }
           else {
             this.router.navigate(['login']);
@@ -58,11 +58,11 @@ export class DomainCheck implements OnInit {
       });
   }
 
-  private addDomainToStorage() {
-    var appData = { companyData: { timeZone: "" }, loginData: {}, userData: {}, timesheetConfiguration: {} };
-    appData.loginData = this.getLoginFormData("");
-    this.storageService.addToStorage('appData', appData);
-  }
+  // private addDomainToStorage() {
+  //   var appData = { companyData: { timeZone: "" }, loginData: {}, userData: {}, timesheetConfiguration: {} };
+  //   appData.loginData = this.getLoginFormData("");
+  //   this.storageService.addToStorage('appData', appData);
+  // }
 
   private setupForm() {
     this.formGroup = this.formBuilder.group({
@@ -83,30 +83,30 @@ export class DomainCheck implements OnInit {
     return this.formGroup?.controls['domain'].value.toLowerCase().replace(/\s/g, "");
   }
 
-  private addUserDetailToStorage(userDataFromServer: { domain?: any; ssoEnabled?: any; employeeTimezone?: any; email?: any; token?: any; }) {
-    userDataFromServer.domain = this.formGroup?.controls['domain'].value.replace(/\s/g, "");
-    var appData = { companyData: { timeZone: "" }, loginData: {}, userData: {}, timesheetConfiguration: {}, ssoEnabled: false };
-    if (userDataFromServer != null && userDataFromServer != undefined) {
-      this.companyService.getCompanyDetails(userDataFromServer.domain).then((companyData: { timeZone: any; }) => {
-        let companyName = this.formGroup?.controls['domain'].value.toLowerCase().replace(/\s/g, "");
-        this.timesheetConfigurationService.findTimesheetConfiguration(companyName).then((configuration: {}) => {
-          appData.companyData = companyData;
-          appData.ssoEnabled = userDataFromServer.ssoEnabled;
-          appData.companyData.timeZone = userDataFromServer.employeeTimezone != null ? userDataFromServer.employeeTimezone : companyData.timeZone;
-          appData.timesheetConfiguration = configuration;
-          appData.loginData = this.getLoginFormData(userDataFromServer.email);
-          this.globalProvider.company = companyName;
-          appData.userData = userDataFromServer;
-          this.storageService.addToStorage('appData', appData);
-          this.storageService.addToStorage("tokenData", {
-            token: userDataFromServer.token,
-            date: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
-          });
-          this.router.navigate([]);
-        })
-      });
-    }
-  }
+  // private addUserDetailToStorage(userDataFromServer: { domain?: any; ssoEnabled?: any; employeeTimezone?: any; email?: any; token?: any; }) {
+  //   userDataFromServer.domain = this.formGroup?.controls['domain'].value.replace(/\s/g, "");
+  //   var appData = { companyData: { timeZone: "" }, loginData: {}, userData: {}, timesheetConfiguration: {}, ssoEnabled: false };
+  //   if (userDataFromServer != null && userDataFromServer != undefined) {
+  //     this.companyService.getCompanyDetails(userDataFromServer.domain).then((companyData: { timeZone: any; }) => {
+  //       let companyName = this.formGroup?.controls['domain'].value.toLowerCase().replace(/\s/g, "");
+  //       this.timesheetConfigurationService.findTimesheetConfiguration(companyName).then((configuration: {}) => {
+  //         appData.companyData = companyData;
+  //         appData.ssoEnabled = userDataFromServer.ssoEnabled;
+  //         appData.companyData.timeZone = userDataFromServer.employeeTimezone != null ? userDataFromServer.employeeTimezone : companyData.timeZone;
+  //         appData.timesheetConfiguration = configuration;
+  //         appData.loginData = this.getLoginFormData(userDataFromServer.email);
+  //         this.globalProvider.company = companyName;
+  //         appData.userData = userDataFromServer;
+  //         this.storageService.addToStorage('appData', appData);
+  //         this.storageService.addToStorage("tokenData", {
+  //           token: userDataFromServer.token,
+  //           date: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+  //         });
+  //         this.router.navigate([]);
+  //       })
+  //     });
+  //   }
+  // }
 
   private getLoginFormData(email: string): any {
     return {

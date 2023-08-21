@@ -24,6 +24,7 @@
     "@ionic/angular": "^7.0.0",
     "@ionic/lab": "^3.2.15",
     "@ionic/pro": "2.0.4",
+    "@ionic/storage": "^4.0.0",
     "ionicons": "^7.0.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
